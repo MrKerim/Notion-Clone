@@ -26,8 +26,14 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import { TrahsBox } from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 const Navigation = () => {
+	const search = useSearch();
+	const settings = useSettings();
+
 	const pathname = usePathname();
 	const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -130,8 +136,8 @@ const Navigation = () => {
 
 				<div>
 					<UserItem />
-					<Item onClick={() => {}} label="Search" icon={Search} isSearch />
-					<Item onClick={() => {}} label="Settings" icon={Settings} />
+					<Item onClick={search.onOpen} label="Search" icon={Search} isSearch />
+					<Item onClick={settings.onOpen} label="Settings" icon={Settings} />
 					<Item onClick={handleCreate} label="New page" icon={PlusCircle} />
 				</div>
 
@@ -146,7 +152,7 @@ const Navigation = () => {
 							className="p-0 w-75"
 							side={isMobile ? "bottom" : "right"}
 						>
-							<p>Trahs box</p>
+							<TrahsBox />
 						</PopoverContent>
 					</Popover>
 				</div>
